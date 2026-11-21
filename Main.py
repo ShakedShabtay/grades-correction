@@ -119,22 +119,31 @@ class GradesWindow(QWidget):
 
         self.update_table()
 
+    def update_file(self):
+        if self.selected_file == "":
+            return
+
+        with open(self.selected_file, 'w') as f:
+            f.write(self.header_line)
+            for i in range(len(self.student_ids)):
+                f.write(f"{self.student_ids[i]},{self.corrected_grades[i]}\n")
+
+        self.open_file_cross_platform(self.selected_file)
+
+    def open_file_cross_platform(self, path):
+        if sys.platform.startswith("win"):
+            os.startfile(path)  # Windows
+        elif sys.platform.startswith("darwin"):
+            subprocess.run(["open", path])  # macOS
+        else:
+            subprocess.run(["xdg-open", path])  # Linux
+
+    def open_about(self):
+        self.about_window = About("https://github.com/ShakedShabtay/grades-correction.git")
+        self.about_window.show()
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        if __name__ == "__main__":
+if __name__ == "__main__":
     app = QApplication()
 
     with open("style.qss", "r") as f:
