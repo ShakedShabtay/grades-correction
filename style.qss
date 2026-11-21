@@ -1,0 +1,12 @@
+QWidget {
+    background-color: whitesmoke;
+    font-size: 14px;
+    color: black;
+}
+
+QLabel#title {
+    font-size: 20px;
+    font-weight: bold;
+    color: darkblue;
+    margin-bottom: 6px;
+}
