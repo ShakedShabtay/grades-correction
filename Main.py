@@ -107,6 +107,18 @@ class GradesWindow(QWidget):
             self.table.setItem(i, 1, QTableWidgetItem(str(self.original_grades[i])))
             self.table.setItem(i, 2, QTableWidgetItem(str(self.corrected_grades[i])))
 
+    def apply_bonus(self):
+        bonus = self.bonus_input.value()
+        for i in range(len(self.original_grades)):
+            new_grade = self.original_grades[i] + bonus
+            if new_grade > 100:
+                new_grade = 100
+            if new_grade < 0:
+                new_grade = 0
+            self.corrected_grades[i] = new_grade
+
+        self.update_table()
+
 
 
 
