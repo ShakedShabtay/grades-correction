@@ -75,6 +75,37 @@ class GradesWindow(QWidget):
 
         self.setLayout(main_layout)
 
+    def load_file(self):
+        file_path, _ = QFileDialog.getOpenFileName(
+            self, "Select Grades File", "", "CSV Files (*.csv);;All Files (*)"
+        )
+        if file_path != "":
+            self.selected_file = file_path
+            self.file_label.setText(os.path.basename(file_path))
+
+            self.student_ids = []
+            self.original_grades = []
+            self.corrected_grades = []
+
+            with open(self.selected_file, 'r') as f:
+                self.header_line = f.readline()  # שמירת הכותרת המקורית של הקובץ
+                for line in f:
+                    parts = line.strip().split(',')
+                    if len(parts) >= 2:
+                        s_id = parts[0]
+                        grade = int(float(parts[1]))
+                        self.student_ids.append(s_id)
+                        self.original_grades.append(grade)
+                        self.corrected_grades.append(grade)
+
+            self.update_table()
+
+    def update_table(self):
+        self.table.setRowCount(len(self.student_ids))
+        for i in range(len(self.student_ids)):
+            self.table.setItem(i, 0, QTableWidgetItem(str(self.student_ids[i])))
+            self.table.setItem(i, 1, QTableWidgetItem(str(self.original_grades[i])))
+            self.table.setItem(i, 2, QTableWidgetItem(str(self.corrected_grades[i])))
 
 
 
