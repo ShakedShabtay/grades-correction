@@ -88,7 +88,7 @@ class GradesWindow(QWidget):
             self.corrected_grades = []
 
             with open(self.selected_file, 'r') as f:
-                self.header_line = f.readline()  # שמירת הכותרת המקורית של הקובץ
+                self.header_line = f.readline() 
                 for line in f:
                     parts = line.strip().split(',')
                     if len(parts) >= 2:
@@ -132,11 +132,11 @@ class GradesWindow(QWidget):
 
     def open_file_cross_platform(self, path):
         if sys.platform.startswith("win"):
-            os.startfile(path)  # Windows
+            os.startfile(path) 
         elif sys.platform.startswith("darwin"):
-            subprocess.run(["open", path])  # macOS
+            subprocess.run(["open", path]) 
         else:
-            subprocess.run(["xdg-open", path])  # Linux
+            subprocess.run(["xdg-open", path])
 
     def open_about(self):
         self.about_window = About("https://github.com/ShakedShabtay/grades-correction.git")
