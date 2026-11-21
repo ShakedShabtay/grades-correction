@@ -10,3 +10,51 @@ QLabel#title {
     color: darkblue;
     margin-bottom: 6px;
 }
+
+QPushButton {
+    background-color: royalblue;
+    color: white;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: dodgerblue;
+}
+
+QPushButton:pressed {
+    background-color: navy;
+}
+
+QPushButton#update_btn {
+    background-color: forestgreen;
+}
+
+QPushButton#update_btn:hover {
+    background-color: seagreen;
+}
+
+QPushButton#about_btn {
+    background-color: slategray;
+}
+
+QSpinBox {
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 6px;
+    padding: 4px;
+}
+
+QTableWidget {
+    background-color: white;
+    gridline-color: lightgray;
+    border: 1px solid gray;
+}
+
+QHeaderView::section {
+    background-color: lightgray;
+    font-weight: bold;
+    padding: 4px;
+    border: 1px solid gray;
+}
